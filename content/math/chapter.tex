@@ -115,6 +115,17 @@ $$\cos x = 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\dots,\,(-\infty<x<\in
 $$(1-x)^{-r} = \sum_{i = 0}^{\infty} \binom{r + i - 1}{i}x^i, (r \in \mathbb{R})$$
 }
 
+\section{Bitwise Formulas}
+{\small \begin{align*}
+  a | b = a \oplus b + a \& b \\
+  a \oplus(a \& b) = (a | b) \oplus b &&& a \oplus b = (a \& b) \oplus (a | b) \\
+  a + b = a | b + a \& b &&& a + b = a \oplus b + 2(a \& b)
+\end{align*}
+
+  $a - b = (a \oplus (a \& b)) - ((a | b) \oplus a) = ((a | b) \oplus b) - ((a | b) \oplus a) = (a \oplus (a \& b)) - (b \oplus (a \& b)) = ((a | b) \oplus b) - (b \oplus (a \& b)) $\\
+
+}
+
 \section{Probability theory}
 Let $X$ be a discrete random variable with probability $p_X(x)$ of assuming the value $x$. It will then have an expected value (mean) $\mu=\mathbb{E}(X)=\sum_xxp_X(x)$ and variance $\sigma^2=V(X)=\mathbb{E}(X^2)-(\mathbb{E}(X))^2=\sum_x(x-\mathbb{E}(X))^2p_X(x)$ where $\sigma$ is the standard deviation. If $X$ is instead continuous it will have a probability density function $f_X(x)$ and the sums above will instead be integrals with $p_X(x)$ replaced by $f_X(x)$.
 

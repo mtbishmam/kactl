@@ -12,4 +12,3 @@ for ((i = 1; ; ++i)) do
 done
 # Shows expected first, then user
 notify-send "bug found!!!!"
-

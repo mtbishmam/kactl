@@ -1,16 +1,11 @@
 Invariants, Monovariants, whatever-variants, see what changes and what does not from start to finish.
 Greedy: sorting, matroid, matroid intersection, add and remove, etc.
-Extreme values for greedy: Find the maximum achievable. Is it always achievable?
-Figure out the necessary conditions. Maybe they are also sufficient (and vice versa)
-Fix a parameter and maximize the result wrt that parameter. Can you binary search there too?
-Construct the lower/upper bounds.
-Guess the form, and use induction to prove it.
-When asked about how many beautiful things exist, you must ask how it is beautiful.
 Backward solving.
 Look at the constraints properly.
 Thoroughly read the problem again.
 Do your integers fit in int? Convert to long long when dealing with large bitshifts and what not. Check constants and single letter variables.
-Try out cases, bruteforce for patterns if pc is available. If many people solved it, it is usually something simple. But dont get stuck in trying to find patterns.
+Assert the obvious. Dbg is your friend.
+Try out cases, bruteforce for patterns if pc is available. If many people solved it, it is usually something simple. But don’t get stuck in trying to find patterns.
 Try to simplify the problem, or solve simpler cases: functional graphs, DAGs, cycles, and strongly connected components instead of directed graphs; trees, cycles, and biconnected components instead of graphs; paths instead of trees; 1D instead of 2D; permutation instead of arrays; etc.
 Pigeonhole principle, birthday paradox, inclusion-exclusion, double counting, etc.
 Maybe your idea is fast enough in practice or maybe your complexity analysis is too loose.
@@ -20,7 +15,6 @@ Min cut is powerful for stuff like the project selection problem: n machines wit
 SQRT decomp for time or memory, binary jumping, and other forms of divide and conquer. Online MO?
 Two-pointer
 Offline preprocessing
-Bitsets to optimize silly bruteforce
 Games: nim, grundy, pattern, etc.
 Geometry: isometries and other transformations (manhattan-to-chebyshev, translations, rotations, etc), line sweep, radial sweep, lots of sweeping. Turn other problems into geometry problems.
 Hashing: strings, sets, multisets, rooted trees, ordered rooted trees, etc. Super powerful.
@@ -28,6 +22,6 @@ String: tries, suffix trees, suffix arrays, kmp, etc.
 Randomization.
 HLD, centroid decomp, treaps, seg tree, persistent seg tree, sliding window, etc.
 FFT and friends: generating functions.
-DP: memory optimization, CHT, LiChao, D&C, Knuth, functions as values, aliens trick (for problems involving partition into k segments, set a penalty for creating partitions, then binary search on penalty value and compare with the optimal solution where any number of partitioning is allowed), prefix sum, seg tree, etc. Remember about boundary cases.
+DP: memory optimization, CHT, LiChao, D&C, Knuth, functions as values, aliens trick, prefix sum, seg tree, etc. Remember about boundary cases.
 Functional graphs, especially for permutation problems.
 Bitwise or randomized for interactive problems with logarithmic number of allowed inputs.

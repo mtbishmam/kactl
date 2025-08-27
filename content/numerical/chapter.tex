@@ -8,6 +8,36 @@
   \kactlimport{PolyInterpolate.h}
 
 \section{Fourier transforms}
+Let $\mathbb{F}$ denote some field.
+Let $\mathbb{P} = \mathbb{F}[x]$
+and let $\mathbb{S} = \mathbb{F}[[x]]$.
+Let $A = a_0 + a_1 x + \dots + a_n x^n \in \mathbb{P}$ 
+and $B = b_0 + b_1 x + \dots + b_m x^m \in \mathbb{P}$.
+
+\textbf{Naive Division + Remainder of $A$ by $B$:} $O(nm)$ polynomial long division taught in school when $B \ne 0$.
+
+\textbf{Inverse of $A$:}. $A(0) \ne 0 \Rightarrow A^{-1} \in \mathbb{S}$. Let $T \in \mathbb{P}$ be s.t. $T(x^2) = A(x)A(-x)$. Then $A^{-1}(x) \equiv A(-x) / T\left(x^2\right) \pmod{x^j}$. To compute $A^{-1}(x) \pmod{x^j}$, we can then recursively $T^{-1}(x) \pmod{x^{\lfloor j/2 \rfloor}}$. Time complexity $O(n + j \log j)$.
+
+\textbf{Hensel's lemma:} Let $r$ be a commutative ring and let $F \in r[x]$ and $a, q_0 \in r$ s.t. $F(q_0) \equiv 0 \pmod{a}$ and $F'(q_0)^{-1} \in r$. Then $F(q_1) \equiv 0 \pmod{a^2}$, where $ q_1 \equiv q_0 - \frac{F(q_0)}{F'(q_0)} \pmod{a^2}$. This is useful in particular when $r = \mathbb{P}$ or $r = \mathbb{S}$.
+
+\textbf{Inverse of $A$:} Hensel's lemma with $F(P) = A - P^{-1}$. $Q_0 \equiv a_0^{-1} \pmod{x^1}$, $Q_{j+1} \equiv Q_{j} \left(2 - AQ_j \right) \pmod{x^{2^{j+1}}}$. $F(Q_j) \equiv 0 \pmod{x^{2^j}}$. Still $O(n + j \log{j})$.
+
+\textbf{Faster Division:} Given $P \in \mathbb{P}$, let $P^R$ denote the polynomial with its cofficients reversed. If $A = DB + R$ with $\deg{R} < \deg{B}$, then $D^R \equiv A^R / B^R \pmod{x^{n - m + 1}}$ and $R = A - BD$. Time complexity $O((n + m) \log{\left(n + m\right)})$.
+
+$\mathbf{\ln A}$: $\left(\ln{A}\right)' = A'/A$. So $\ln{A} = Q_0 + \int A'/A$ for some $Q_0 \in \mathbb{F}$. Intuition suggests that $Q_0 = \ln{a_0}$, since $\ln{A(0)} = Q_0 = \ln{a_0}$.
+
+$\mathbf{\exp{A}}$: $Q_{k+1} \equiv Q_k (1 + A - \ln{Q_k}) \pmod{x^{2^{k+1}}}$.
+
+$\mathbf{A^j}$: Let $T \in \mathbb{P}$ be s.t. $T(0) = 1$ and $A(x) = \alpha x^t T(x)$ for some $\alpha \in k$. Then $A^j(x) = \alpha^j x^{jt} \exp{\left[ j \ln{T(x)} \right]}$.
+
+\textbf{Chirp-Z:} Given $z \in \mathbb{C}$, $s \in \mathbb{N}_{\ge 0}$. $A\left(z^{2s}\right) = z^{s^2} \sum_{j=0}^n \left( a_j z^{j^2} \right) \left( z^{-(s-j)^2} \right)$. Clearly, $A(z^0), A(z^{2})\dots, A(z^{2s})$ can be computed in one convolution with time complexity $O\left((s + n) \log{\left(s + n\right)}\right)$. By applying $a_j \mapsto a_j z^j \forall j$, we can then apply the previous algo to compute $A(z^1), A(z^3), \dots, A(z^{2s+1})$ in the same time complexity.
+
+\textbf{Multipoint-Eval:} To calculate $A(x_0), \dots, A(x_{n-1})$, we use the fact that $\forall i, A(x_i) \equiv A(x) \pmod{x - x_i}$. Segment tree, segment $[l,r)$ has $P_{l,r} = \prod_{j=l}^{r-1} (x - x_j)$. We want $A_{l,r} = \left( A(x) \mod{P_{l,r}} \right)$. If $mid=\lfloor (l+r)/2 \rfloor$, then $A_{l,mid} = \left( A_{l,r} \mod{P_{l,mid}} \right)$ and $A_{mid,r} = \left(A_{mid,r} \mod{P_{mid,r}}\right)$. Finally, $A_{i,i+1} = A(x_i) \forall i$. $O\left(n \log^2{n} \right)$.
+
+\textbf{Interpolation:} Given $(x_0,y_0), \dots, (x_{n-1},y_{n-1})$ s.t. $x_0, \dots, x_{n-1}$ are distinct and $\forall i, A(x_i) = y_i$. Then $A(x) = \sum_{i=1}^n y_i \prod_{j \ne i} \frac{x - x_j}{x_i - x_j}$. Let $P(x) = \prod_j (x - x_j)$ and $\forall i, P_i = \prod_{j \ne i} \left(x_i - x_j \right)$. Then $P_i = P'(x_i)$, so use multipoint evaluation to compute $P_0, \dots, P_{n-1}$. Now, we recursively compute $A(x) = A_{0,n}(x)$ by letting $A_{l,r}(x) = A_{l,mid}(x) \prod_{mid \le j < r} \left(x - x_j\right) + A_{mid,r}(x) \prod_{l \le j < mid} \left( x - x_j \right)$. And $\forall i, A_{i,i+1}(x) = \frac{y_i}{P_i}$. Here, $mid = \lfloor (l + r) / 2 \rfloor$. $O\left(n \log^2{n} \right)$.
+
+\textbf{GCD and Resultants:} Let $\lambda_1, \dots, \lambda_n$ and $\mu_1, \dots, \mu_m$ be the roots of $A$ and $B$ respectively, with multiplicity. Then the resultant $\mathcal{R}(A,B) = a^m_n b^n_m \prod_{i,j} \left( \mu_j - \lambda_j \right)$. $\mathcal{R}(A, B) = (-1)^{nm} \mathcal{R}(B, A)$. $\mathcal{R}(A,B) = 0$ iff $A$ and $B$ share a common root. $\mathcal{R}(A,B) = a^m_n b^m_n$ when $n = 0$ or $m = 0$. $\forall C \in k[x], \mathcal{R}(A, B) = b_m^{\deg{A} - \deg{\left(A - CB\right)}} \mathcal{R}(A - CB, B)$. So, we can compute $\gcd(A,B)$ and $\mathcal{R}(A,B)$ at the same time in $O(mn)$: $\mathcal{R}(A,0) = 0$, $\mathcal{R}(A,B) = b^n_m$, $\mathcal{R}(A,B) = b_m^{\deg{A} - \deg{D}} (-1)^{\deg{B}\deg{D}} \mathcal{R}\left(B, D\right)$. Here, $D = \left( A \mod{B} \right)$. We can use this to find intersection between two curves of the form $P(x,y) = 0$ and $Q(x,y) = 0$. Let $P_{y_0}(x) = P(x, y_0) \in k[x]$ and $Q_{y_0}(x) = Q(x, y_0) \in k[x]$. First, we can solve $R(y_0) = \mathcal{R}\left( P_{y_0}(x), Q_{y_0}(x) \right) = 0$ for $y_0$. Then for those $y_0$, we solve $P(x, y_0) = Q(x, y_0) = 0$. Under simple circumstances, we should get finitely many intersection points.
+
 	\kactlimport{FastFourierTransform.h}
 	\kactlimport{FastFourierTransformMod.h}
 	\kactlimport{NumberTheoreticTransform.h}

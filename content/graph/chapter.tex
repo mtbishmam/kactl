@@ -14,7 +14,13 @@
 	\kactlimport{MinCut.h}
 	\kactlimport{GlobalMinCut.h}
 	\kactlimport{GomoryHu.h}
+  \subsection{Flow Variations}
+\textbf{Demand Flow:} Each node has an associated $d(v) = f_{in}(v) - f_{out}(v)$. So $d(v) > 0$ means node wishes to recieve more. Given $d(v)$'s for each vertex the problem is to figure out whether it is possible to satisfy all demands while maintaining capacity constraints. Solution - First check $\sum d(v) = 0$. Next add a source S and sink T. Now for each $d(v) < 0$, add edge $S \rightarrow v$ with capacity $-d(v)$, and for each $d(v) > 0$, add edge $v \rightarrow T$ with capacity $d(v)$. Now maxflow = $\sum_{d(v) > 0} d(v)$ guarantees that solution exists.\\
+\textbf{Circulations with demands and lower bounds:} Each edge now has a lower bound $l(e)$, so the capacity constraint is now $0 \leq l(e) \leq f(e) \leq c(e)$. Also, each vertex has demand $d(v)$. Solution - Split flow into two parts $f_0, f_1$. Let $f_0(e) = l(e)$ for each edge, thus the lower bound condition is satisfied. Now satisfy the demand conditions by setting new demand $d'(v) = d(v) - F(v)$, where $F(v) = \sum_{(x, v)} l(x, v) - \sum_{(v, x)} l(v, x)$. Also set new upperbounds to $c(e) - l(e)$.\\
+\textbf{Max flow with lower bound (no demands):} Binary search on max flow $F$. Add edge $T \rightarrow S$ with bounds $[F, \infty]$, and set all $d(v) = 0$. Now feasability implies that a construction with at least $F$ flow exists.\\
+\textbf{Project Selection Problem:} Add source $S$ and sink $T$. For each project $P_i$ with profit $p_i$, add $S \rightarrow P_i$ with capacity $p_i$. For each machine $M_i$ with cost to buy $c_i$, add $M_i \rightarrow T$ with capacity $c_i$. For each machines required for a project, add edge $P_i \rightarrow M_j$ with capacity $\infty$. Now, $\sum p_i$ - mincut gives the maximum profit.\\
 
+ 
 \section{Matching}
 	\kactlimport{HopcroftKarp.h}
 	%\kactlimport{DFSMatching.h}
