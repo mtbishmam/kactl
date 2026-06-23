@@ -1,7 +1,18 @@
-1. vi .bashrc: export PATH="$PATH:$HOME/cp"
-2. mkdir -p cp/bits/ && cd cp && vi cf (Type)
-3. chmod +x cf; restart terminal
-4. Type stdc++.h, template.cpp, hash.sh
+1. vi ~/.bashrc: export PATH="$PATH:$HOME/cp"
+2. mkdir -p ~/cp/t/bits/ && cd ~/cp && vi cf
+3. vi run; vi hash.sh; vi stress
+4. chmod +x cf run hash.sh stress; exec bash
+5. touch gen.cpp code.cpp bf.cpp in out exp
+6. cd t && touch in out exp t.cpp bits/stdc++.h
+-------- Sublime --------
+1. subl .->Write t.cpp stdc++h & copy run
+2. Tools->Build System->New Build System
+   {"shell_cmd": "run $file_base_name",
+   "working_dir": "$file_path"}
+3. Preferences->Key Bindings
+   {"keys": ["alt+shift+0"],
+   "command": "set_max_columns",
+   "args": { "columns": 2 }}
 -------- Kate --------
 1. Go to Settings->Configure Kate.
  1. Editing->Default input mode->Vim
