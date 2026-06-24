@@ -3,7 +3,7 @@
 3. vi run; vi hash.sh; vi stress
 4. chmod +x cf run hash.sh stress; exec bash
 5. touch gen.cpp code.cpp bf.cpp in out exp
-6. cd t && touch in out exp t.cpp bits/stdc++.h
+6. cd t&&touch in out exp t.cpp bits/stdc++.h
 -------- Sublime --------
 1. subl .->Write t.cpp stdc++h & copy run
 2. Tools->Build System->New Build System
