@@ -1,4 +1,9 @@
-#include "bits/stdc++.h"
+/**
+ * Author: MTB Ishmam
+ * Date: 2026-07-01
+ * Description: 
+ */
+#include "bits/stdc++.h" /** keep-include */
 using namespace std;
 // #include <ext/pb_ds/assoc_container.hpp>
 // #include <ext/pb_ds/tree_policy.hpp>
@@ -31,5 +36,5 @@ signed main() {
     // #ifdef DeBuG
     cin >> tc;
     // #endif
-    for (int cs = 1; cs <= tc; cs++) solve(cs);
+    for(int cs = 1; cs <= tc; cs++) solve(cs);
 }
