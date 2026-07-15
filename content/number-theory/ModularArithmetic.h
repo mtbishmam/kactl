@@ -1,27 +1,35 @@
 /**
  * Author: MTB Ishmam
- * Date: 2026-06-24
+ * Date: 2026-07-15
  * Description: Operators for modular arithmetic. You need to set {\tt MOD} to
  * some number first and then you can use the structure.
  */
 #pragma once
-#include "euclid.h"
-const ll MOD = 1e9 + 7; // change to something else
+const ll MOD = 998244353;
 struct mint {
-    ll x;
-    mint(ll _ = 0) : x((_ % MOD + MOD) % MOD) {}
-    mint operator+(const mint& b) { return mint(x + b.x >= MOD ? x + b.x - MOD : x + b.x); }
-    mint operator-(const mint& b) { return mint(x - b.x < 0 ? x - b.x + MOD : x - b.x); }
-    mint operator*(const mint& b) { return mint((x * b.x) % MOD); }
-    // mint operator*(const mint& b) { return mint(modmul(x, b.x, MOD)); }
-    mint operator/(const mint& b) { return *this * invert(b); }
-    static mint invert(const mint& a) {
-        ll x, y, g = euclid(a.x, MOD, x, y);
-        assert(g == 1); return mint((x + MOD) % MOD);
+  ll x;
+  mint(ll _ = 0) : x((_ % MOD + MOD) % MOD) {}
+  mint operator+(const mint&b)const{return x+b.x;}
+  mint operator-(const mint&b)const{return x-b.x;}
+  mint operator*(const mint&b)const{return x*b.x;}
+  mint operator/(const mint&b)const{return*this*inv(b);}
+  mint operator^(ll b) const { // a^b^c=(a^b)^c
+    assert(b >= 0); // not (a^b)^c -> actual ord
+    mint a = *this, ret = 1;
+    while (b) {
+      if (b & 1) ret = ret * a;
+      a = a * a; b >>= 1;
     }
-    mint operator^(ll e) {  // a^b^c = (a^b)^c, not a^(b^c) [natural ord]
-        if (!e) return mint(1);
-        mint r = *this ^ (e / 2); r = r * r;
-        return e & 1 ? *this * r : r;
-    }
+    return ret;
+  }
+  static ll euclid(ll a, ll b, ll& x, ll& y) {
+    if (!b) return x = 1, y = 0, a;
+    ll g = euclid(b, a % b, y, x);
+    return y -= a / b * x, g;
+  }
+  static mint inv(const mint&a) {
+    ll x, y, g = euclid(a.x, MOD, x, y);
+    assert(g == 1);
+    return x;
+  }
 };

@@ -17,7 +17,7 @@
 	\kactlimport{Factor.h}
 
 \section{Divisibility}
-	\kactlimport{euclid.h}
+	% \kactlimport{euclid.h}
 	% \kactlimport{Euclid.java}
 	\kactlimport{CRT.h}
 
@@ -50,4 +50,3 @@
 
   Useful sums and convolutions: $\epsilon = \mu * \textnormal{\textbf{1}}$, id = $\phi * \textnormal{\textbf{1}}$, id = $g * \textnormal{id}_2$, where $\epsilon(n) = [n = 1]$, $\textnormal{\textbf{1}}(n) = 1$, id$(n) = n$, id$_k(n) = n^k$, $g(n) = \sum_{d | n}\mu(d)nd$.\\
   coprime pairs in $[1,n]$ is $\sum_{d = 1}^{n}\mu(d)\lfloor n / d \rfloor ^2$. Sum of GCD pairs in $[1, n]$ is $\sum_{d = 1}^{n}\phi(d)\lfloor n / d \rfloor ^2$. Sum of LCM pairs in $[1, n]$ is $\sum_{d = 1}^{n}(\frac{\lfloor n / d \rfloor (1 + \lfloor n / d \rfloor)}{2})^2 g(d)$, where $g$ is defined above with $g(p^k) = p^k - p^{k+1}$.
-
