@@ -1,8 +1,8 @@
 /**
  * Author: MTB Ishmam
  * Date: 2026-07-15
- * Description: Operators for modular arithmetic. You need to set {\tt MOD} to
- * some number first and then you can use the structure.
+ * Description: Modular integer operators. Set {\tt MOD} before using the
+ * structure.
  */
 #pragma once
 const ll MOD = 998244353;
