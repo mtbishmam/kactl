@@ -4,7 +4,7 @@
 4. chmod +x cf run hash.sh stress.sh;exec bash
 5. touch t.cpp in out exp bits/stdc++.h
 6. subl . -> Write t.cpp and bits/stdc++.h
-7. copy t.cpp as code.cpp & bits to t
+7. copy t.cpp as code,bf,gen & bits to t
 8. cd t&&touch gen.cpp bf.cpp in out exp
 -------- Sublime --------
 1. Tools->Build System->New Build System
