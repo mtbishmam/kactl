@@ -1,7 +1,7 @@
 1. vi ~/.bashrc: export PATH="$PATH:$HOME/cp"
-2. mkdir -p ~/cp/{bits,t/bits} && cd ~/cp && vi cf
+2. mkdir -p ~/cp/bits && cd ~/cp && vi cf
 3. cp cf run; vi run; vi hash.sh; vi stress.sh
-4. chmod +x cf run hash.sh stress.sh; exec bash
+4. chmod +x cf run hash.sh stress.sh;exec bash
 5. touch t.cpp in out exp bits/stdc++.h
 6. subl . -> Write t.cpp and bits/stdc++.h
 7. copy t.cpp as code.cpp & bits to t

@@ -2,7 +2,7 @@
 \contentsline {chapter}{\numberline {2}Mathematics}{1}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Equations}{1}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Ceils and Floors}{1}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Recurrences}{2}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Recurrences}{1}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Trigonometry}{2}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Geometry}{2}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Triangles}{2}{subsection.2.5.1}%
@@ -21,31 +21,31 @@
 \contentsline {subsubsection}{Uniform distribution}{2}{section*.4}%
 \contentsline {subsubsection}{Exponential distribution}{2}{section*.5}%
 \contentsline {subsubsection}{Normal distribution}{2}{section*.6}%
-\contentsline {section}{\numberline {2.11}Markov chains}{3}{section.2.11}%
+\contentsline {section}{\numberline {2.11}Markov chains}{2}{section.2.11}%
 \contentsline {section}{\numberline {2.12}Trivia}{3}{section.2.12}%
 \contentsline {chapter}{\numberline {3}Data structures}{3}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Numerical}{4}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Polynomials and recurrences}{4}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Fourier transforms}{5}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Matrices}{7}{section.4.3}%
+\contentsline {section}{\numberline {4.3}Matrices}{6}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Optimization}{8}{section.4.4}%
 \contentsline {chapter}{\numberline {5}Number theory}{8}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Modular arithmetic}{8}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Primality}{9}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Divisibility}{10}{section.5.3}%
+\contentsline {section}{\numberline {5.3}Divisibility}{9}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}Bézout's identity}{10}{subsection.5.3.1}%
 \contentsline {section}{\numberline {5.4}Fractions}{10}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Mobius Function}{10}{section.5.5}%
 \contentsline {chapter}{\numberline {6}Combinatorial}{10}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Permutations}{10}{section.6.1}%
 \contentsline {chapter}{\numberline {7}Graph}{10}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Shortest Paths}{11}{section.7.1}%
+\contentsline {section}{\numberline {7.1}Shortest Paths}{10}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Network flow}{11}{section.7.2}%
 \contentsline {subsection}{\numberline {7.2.1}Flow Variations}{12}{subsection.7.2.1}%
 \contentsline {section}{\numberline {7.3}Matching}{12}{section.7.3}%
 \contentsline {section}{\numberline {7.4}DFS algorithms}{12}{section.7.4}%
 \contentsline {section}{\numberline {7.5}Coloring}{13}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Heuristics}{14}{section.7.6}%
+\contentsline {section}{\numberline {7.6}Heuristics}{13}{section.7.6}%
 \contentsline {section}{\numberline {7.7}Trees}{14}{section.7.7}%
 \contentsline {chapter}{\numberline {8}Geometry}{15}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Geometric primitives}{15}{section.8.1}%
