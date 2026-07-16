@@ -1,7 +1,6 @@
 @echo off&setlocal
-rem Make sure code, gen and bf are executables.
 set "PATH=%PATH%;%USERPROFILE%\cp;C:\Program Files\CodeBlocks\MinGW\bin"
-set i=1
+set i=1&rem Make sure code, gen and bf are executables.
 :loop
 echo %i%&gen>in&&bf<in>exp&&code<in>out||goto fail
 fc /w exp out>nul||goto bad
