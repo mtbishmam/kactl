@@ -1,3 +1,7 @@
+/**
+ * Author: MTB Ishmam
+ * Description: Contest submission template.
+ */
 #include "bits/stdc++.h"
 using namespace std;
 // #include <ext/pb_ds/assoc_container.hpp>
@@ -31,5 +35,5 @@ signed main() {
     // #ifdef DeBuG
     cin >> tc;
     // #endif
-    for (int cs = 1; cs <= tc; cs++) solve(cs);
+    for(int cs = 1; cs <= tc; cs++)solve(cs);
 }

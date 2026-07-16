@@ -5,3 +5,8 @@
 a.out
 header.tmp
 .vscode
+.DS_Store
+
+# Keep the generated KACTL build artifacts in version control.
+!/build/
+!/build/**
