@@ -11,7 +11,7 @@
  */
 #pragma once
 
-#include "../data-structures/UnionFindRollback.h"
+#include "../data-structures/dsu.h"
 
 struct Edge { int a, b; ll w; };
 struct Node { /// lazy skew heap node
@@ -36,7 +36,7 @@ Node *merge(Node *a, Node *b) {
 void pop(Node*& a) { a->prop(); a = merge(a->l, a->r); }
 
 pair<ll, vi> dmst(int n, int r, vector<Edge>& g) {
-	RollbackUF uf(n);
+	rollback_dsu ds(n);
 	vector<Node*> heap(n);
 	for (Edge e : g) heap[e.b] = merge(heap[e.b], new Node{e});
 	ll res = 0;
@@ -51,24 +51,24 @@ pair<ll, vi> dmst(int n, int r, vector<Edge>& g) {
 			Edge e = heap[u]->top();
 			heap[u]->delta -= e.w, pop(heap[u]);
 			Q[qi] = e, path[qi++] = u, seen[u] = s;
-			res += e.w, u = uf.find(e.a);
+			res += e.w, u = ds.find(e.a);
 			if (seen[u] == s) { /// found cycle, contract
 				Node* cyc = 0;
-				int end = qi, time = uf.time();
+				int end = qi, time = ds.time();
 				do cyc = merge(cyc, heap[w = path[--qi]]);
-				while (uf.join(u, w));
-				u = uf.find(u), heap[u] = cyc, seen[u] = -1;
+				while (ds.join(u, w));
+				u = ds.find(u), heap[u] = cyc, seen[u] = -1;
 				cycs.push_front({u, time, {&Q[qi], &Q[end]}});
 			}
 		}
-		rep(i,0,qi) in[uf.find(Q[i].b)] = Q[i];
+		rep(i,0,qi) in[ds.find(Q[i].b)] = Q[i];
 	}
 
 	for (auto& [u,t,comp] : cycs) { // restore sol (optional)
-		uf.rollback(t);
+		ds.rollback(t);
 		Edge inEdge = in[u];
-		for (auto& e : comp) in[uf.find(e.b)] = e;
-		in[uf.find(inEdge.b)] = inEdge;
+		for (auto& e : comp) in[ds.find(e.b)] = e;
+		in[ds.find(inEdge.b)] = inEdge;
 	}
 	rep(i,0,n) par[i] = in[i].a;
 	return {res, par};

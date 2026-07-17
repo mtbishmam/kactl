@@ -2,7 +2,7 @@
 
 #include "../../content/geometry/Point.h"
 #include "../../content/geometry/ManhattanMST.h"
-#include "../../content/data-structures/UnionFind.h"
+#include "../../content/data-structures/dsu.h"
 
 
 typedef Point<int> P;
@@ -19,9 +19,9 @@ T rectilinear_mst_n(vector<P> ps) {
 			edges.push_back({i, j, dist(i,j)});
 	T cost = 0;
 	sort(all(edges), [](edge a, edge b) { return a.weight < b.weight; });
-	UF uf(sz(ps));
+	dsu ds(sz(ps));
 	for (auto e: edges)
-		if (uf.join(e.src, e.dst))
+		if (ds.join(e.src, e.dst))
 			cost += e.weight;
 	return cost;
 }
@@ -39,9 +39,9 @@ signed main() {
 				auto edges = manhattanMST(pts);
 				assert(edges.size() <= 4*pts.size());
 				sort(all(edges));
-				UF uf(sz(pts));
+				dsu ds(sz(pts));
 				int cost = 0, joined = 0;
-				for (auto e: edges) if (uf.join(e[1], e[2])) cost += e[0], joined++;
+				for (auto e: edges) if (ds.join(e[1], e[2])) cost += e[0], joined++;
 				if (num_pts > 0) assert(joined == num_pts - 1);
 				assert(cost == rectilinear_mst_n(pts));
 		}

@@ -1,7 +1,7 @@
 #include "../utilities/template.h"
 
 #include "../../content/graph/LinkCutTree.h"
-#include "../../content/data-structures/UnionFind.h"
+#include "../../content/data-structures/dsu.h"
 
 int main() {
 	srand(2);
@@ -9,7 +9,7 @@ int main() {
 	rep(it,0,10000) {
 		int N = rand() % 20 + 1;
 		LinkCut lc(N);
-		UF uf(N);
+		dsu ds(N);
 		vector<pii> edges;
 		rep(it2,0,1000) {
 			int v = (rand() >> 4) & 3;
@@ -25,9 +25,9 @@ int main() {
 			} else {
 				int a = (rand() >> 4) % N;
 				int b = (rand() >> 4) % N;
-				uf.e.assign(N, -1);
-				for(auto &ed: edges) uf.join(ed.first, ed.second);
-				bool c = uf.sameSet(a, b);
+				ds.e.assign(N, -1);
+				for(auto &ed: edges) ds.join(ed.first, ed.second);
+				bool c = ds.find(a) == ds.find(b);
 				if (!c && v != 1) {
 					lc.link(a, b);
 					edges.emplace_back(a, b);

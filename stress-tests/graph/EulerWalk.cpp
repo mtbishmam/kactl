@@ -1,20 +1,7 @@
 #include "../utilities/template.h"
 
 #include "../../content/graph/EulerWalk.h"
-
-struct UF {
-	vi v;
-	UF(int n) : v(n, -1) {}
-	int find(int x) { return v[x] < 0 ? x : v[x] = find(v[x]); }
-	void join(int a, int b) {
-		a = find(a);
-		b = find(b);
-		if (a == b) return;
-		if (-v[a] < -v[b]) swap(a, b);
-		v[a] += v[b];
-		v[b] = a;
-	}
-};
+#include "../../content/data-structures/dsu.h"
 
 bool hasEulerWalk(vector<vector<pii>>& ed, int start, bool undir, bool cycle) {
 	int n = sz(ed);
@@ -41,10 +28,10 @@ bool hasEulerWalk(vector<vector<pii>>& ed, int start, bool undir, bool cycle) {
 	}
 	if (odd > !cycle) { return false; }
 	if (ed[start].empty() && anyEdges) { return false; }
-	UF uf(n);
-	rep(i,0,n) for(auto &x: ed[i]) uf.join(i, x.first);
+	dsu ds(n);
+	rep(i,0,n) for(auto &x: ed[i]) ds.join(i, x.first);
 	int comp = 0;
-	rep(i,0,n) if (uf.find(i) == i) {
+	rep(i,0,n) if (ds.find(i) == i) {
 		if (ed[i].empty()) continue;
 		comp++;
 	}
