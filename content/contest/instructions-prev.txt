@@ -1,0 +1,22 @@
+1. vi ~/.bashrc: export PATH="$PATH:$HOME/cp"
+2. mkdir -p ~/cp/bits && cd ~/cp && vi cf
+3. cp cf run; vi run; vi hash.sh; vi stress.sh
+4. chmod +x cf run hash.sh stress.sh;exec bash
+5. touch t.cpp in out exp bits/stdc++.h
+6. subl . -> Write t.cpp and bits/stdc++.h
+7. copy t.cpp as code,bf,gen & bits to t
+8. cd t&&touch gen.cpp bf.cpp in out exp
+-------- Sublime --------
+1. Tools->Build System->New Build System
+   {"shell_cmd": "~/cp/run $file_base_name",
+    "windows": {"shell_cmd": "call run.bat \"$file_base_name\""},
+    "working_dir": "$file_path"}
+2. Preferences->Key Bindings
+   {"keys": ["alt+shift+0"],
+    "command": "set_max_columns",
+    "args": { "columns": 2 }}
+-------- Windows --------
+1. Open File Exp->Folder Options->View->Uncheck Hide exten...
+2. User PATH->Add: %USERPROFILE%\cp and C:\Program Files\CodeBlocks\MinGW\bin
+3. Check PATH: cmd: echo %PATH% | PowerShell: echo $env:PATH
+4. CodeBlocks MinGW: fsanitize unavailable :(

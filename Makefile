@@ -25,13 +25,30 @@ kactl: test-session.pdf | build
 	$(LATEXCMD) content/kactl.tex && $(LATEXCMD) content/kactl.tex
 	cp build/kactl.pdf kactl.pdf
 
+colored: | build
+	$(LATEXCMD) -jobname=kactl_colored '\def\KACTLColorBuild{1}\input{content/kactl.tex}'
+	$(LATEXCMD) -jobname=kactl_colored '\def\KACTLColorBuild{1}\input{content/kactl.tex}'
+	cp build/kactl_colored.pdf kactl_colored.pdf
+
+build-all:
+	@$(MAKE) test-compiles; compile_status=$$?; \
+	$(MAKE) test; stress_status=$$?; \
+	$(MAKE) kactl; mono_status=$$?; \
+	$(MAKE) colored; color_status=$$?; \
+	if [ $$compile_status -ne 0 ] || [ $$stress_status -ne 0 ] || \
+	   [ $$mono_status -ne 0 ] || [ $$color_status -ne 0 ]; then \
+	  echo "One or more test suites or PDF builds failed"; exit 1; \
+	fi
+
 clean:
-	cd build && rm -f kactl.aux kactl.log kactl.tmp kactl.toc kactl.pdf kactl.ptc
+	cd build && rm -f kactl.aux kactl.log kactl.tmp kactl.toc kactl.pdf kactl.ptc kactl.out \
+		kactl_colored.aux kactl_colored.log kactl_colored.tmp kactl_colored.toc \
+		kactl_colored.pdf kactl_colored.ptc kactl_colored.out
 
 veryclean: clean
 	rm -f kactl.pdf test-session.pdf
 
-.PHONY: help fast kactl clean veryclean
+.PHONY: help fast kactl colored build-all clean veryclean
 
 build:
 	mkdir -p build/
